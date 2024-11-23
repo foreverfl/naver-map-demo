@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 const MapMaker = ({ map, serviceKey }) => {
   // 1. API 데이터 가져오기
   const fetchData = async () => {
+    /*
     const today = new Date()
     .toISOString()
     .split("T")[0]
@@ -10,6 +11,8 @@ const MapMaker = ({ map, serviceKey }) => {
 
     // 한 번에 가져올 최대 데이터 수
     const url = `https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getPblPvtRentLttotPblancDetail?page=1&perPage=100&cond%5BRCRIT_PBLANC_DE_START%3A%3ALTE%5D=${today}&cond%5BRCRIT_PBLANC_DE_END%3A%3AGTE%5D=${today}&serviceKey=${process.env.NEXT_PUBLIC_HOUSE_API_KEY}`;
+*/
+    const url = `https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getPblPvtRentLttotPblancDetail?page=1&perPage=100&serviceKey=${process.env.NEXT_PUBLIC_HOUSE_API_KEY}`;
 
     try {
       const response = await fetch(url);
@@ -29,17 +32,15 @@ const MapMaker = ({ map, serviceKey }) => {
   
   // 2. Geocoding: 주소를 위도/경도로 변환 할수 있는거
   const geocodeAddress = async (address) => {
-    const clientId = process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID; // 네이버 지도 Client ID
-    const clientSecret = process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_SECRET; // 네이버 지도 Client Secret
-    const url = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${encodeURIComponent(address)}`;
+    const url = `/api/geocode?address=${encodeURIComponent(address)}`;
 
     try {
-      const response = await fetch(url, {
-        headers: {
-          "X-NCP-APIGW-API-KEY-ID":process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID,
-          "X-NCP-APIGW-API-KEY":process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_SECRET,
-        },
-      });
+      const response = await fetch(url);
+      //실패 확인
+      if (!response.ok) {
+        throw new Error(`Geocoding 요청 실패: ${response.status}`);
+      }
+
 
       const data = await response.json();
       if (data.addresses && data.addresses.length > 0) {
@@ -66,8 +67,10 @@ const MapMaker = ({ map, serviceKey }) => {
 
     const data = await fetchData();//api 데이터 가져오고
 
+
     for (const item of data) {// for of 문
       const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES } = item;
+
 
       // 주소를 위도/경도로 변환
       const coordinates = await geocodeAddress(HSSPLY_ADRES); //주소를 위도경도로 바꾸고
