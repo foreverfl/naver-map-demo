@@ -1,5 +1,8 @@
+"use client";
+
 import React, { useState } from "react";
 import Sidebar from "@/components/Siderbar";
+console.log(Sidebar);
 
 const SidebarTestPage = () => {
   const [isOpen, setIsOpen] = useState(true);
@@ -8,9 +11,9 @@ const SidebarTestPage = () => {
     HOUSE_NM: "성산 그린코아",
     HSSPLY_ADRES: "서울시 마포구 성산동",
     HOUSE_MANAGE_NO: "2024850001",
-    RCRIT_PBLANC_DE_START: "2024-01-01",
-    RCRIT_PBLANC_DE_END: "2024-01-15",
-    pblanc_url:
+    SUBSCRPT_RCEPT_BGNDE: "2024-01-01",
+    SUBSCRPT_RCEPT_ENDDE: "2024-01-15",
+    PUBLIC_URL:
       "https://www.applyhome.co.kr/ai/aia/selectPRMOLttotPblancDetailView.do?houseManageNo=2024850001&pblancNo=2024850001&houseSecd=03",
   };
 
