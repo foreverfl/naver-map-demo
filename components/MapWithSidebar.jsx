@@ -10,6 +10,7 @@ const MapWithSidebar = ({map}) => {
 
     //마크 클릭 이벤트
     const handledMarkerClick = (data) => {
+        console.log("클릭된 마커 데이터:", data);
         setDetails(data);// 전달받은 데이터 저장
         setSidebarOpen(true);// 사이드바 열기
     };

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 
-const MapMaker = ({ map }) => {
+const MapMaker = ({ map ,onMarkerClick }) => {
   // API 데이터 가져오기
   const fetchData = useCallback(async () => {
     const url = `https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getPblPvtRentLttotPblancDetail?page=1&perPage=100&serviceKey=${process.env.NEXT_PUBLIC_HOUSE_API_KEY}`;
@@ -58,7 +58,13 @@ const MapMaker = ({ map }) => {
     const data = await fetchData(); // API 데이터 가져오기
 
     if (data.length > 0) {
-      const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES } = data[0];
+      const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES,SUBSCRPT_RCEPT_BGNDE,
+        SUBSCRPT_RCEPT_ENDDE,
+        PRZWNER_PRESNATN_DE,
+        CNTRCT_CNCLS_BGNDE,
+        CNTRCT_CNCLS_ENDDE,
+        MVN_PREARNGE_YM,
+        PBLANC_URL, } = data[0];
 
       // 주소를 위도/경도로 변환
       const coordinates = await geocodeAddress(HSSPLY_ADRES);
@@ -72,10 +78,26 @@ const MapMaker = ({ map }) => {
 
         // 마커 클릭 이벤트
         marker.addListener("click", () => {
+          console.log("마커 클릭됨!",{
+            houseManageNo: HOUSE_MANAGE_NO,
+    houseName: HOUSE_NM,
+    address: HSSPLY_ADRES,
+          });
+          
           onMarkerClick({
             houseManageNo: HOUSE_MANAGE_NO,
             houseName: HOUSE_NM,
             address: HSSPLY_ADRES,
+            houseManageNo: HOUSE_MANAGE_NO,
+            houseName: HOUSE_NM,
+            address: HSSPLY_ADRES,
+            subscrptRceptBgnde: SUBSCRPT_RCEPT_BGNDE,
+            subscrptRceptEndde: SUBSCRPT_RCEPT_ENDDE,
+            przwnerPresnatnDe: PRZWNER_PRESNATN_DE,
+            cntrctCnclsBgnde: CNTRCT_CNCLS_BGNDE,
+            cntrctCnclsEndde: CNTRCT_CNCLS_ENDDE,
+            mvnPrearngeYm: MVN_PREARNGE_YM,
+            pblanc_url: PBLANC_URL
           });
         });
 
