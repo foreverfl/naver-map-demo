@@ -4,8 +4,6 @@ import React, { useState, useCallback } from "react";
 import NaverMap from "@/components/NaverMap";
 import MapMarker from "@/components/MapMaker";
 
-
-
 export default function Main() {
   const [map, setMap] = useState(null); // 지도 객체를 저장하는 상태
 
