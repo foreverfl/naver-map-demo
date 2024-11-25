@@ -7,10 +7,16 @@ const Sidebar1 = ({ isOpen, details, onClose }) => {
 
   return (
     <div
+      
       className={`fixed top-0 right-0 w-full md:w-[400px] h-full bg-gray-100 shadow-lg transform ${
         isOpen ? "translate-x-0" : "translate-x-full"
       } transition-transform duration-300 z-50`}
+      tyle={{
+        top: "64px", // 네비게이션 높이에 맞게 설정 (64px는 예시, 네비게이션의 실제 높이로 변경)
+        height: "calc(100vh - 64px)", // 네비게이션을 제외한 높이
+      }}
     >
+
       {/* 닫기 버튼 */}
             <button
         className="absolute top-3 left-2 "

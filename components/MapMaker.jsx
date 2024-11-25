@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from "react";
 const MapMaker = ({ map ,onMarkerClick }) => {
   // API 데이터 가져오기
   const fetchData = useCallback(async () => {
-    const url = `https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getPblPvtRentLttotPblancDetail?page=1&perPage=100&serviceKey=${process.env.NEXT_PUBLIC_HOUSE_API_KEY}`;
+    const url = `https://api.odcloud.kr/api/ApplyhomeInfoDetailSvc/v1/getPblPvtRentLttotPblancDetail?page=1&perPage=10&serviceKey=${process.env.NEXT_PUBLIC_HOUSE_API_KEY}`;
 
     try {
       const response = await fetch(url);
@@ -58,6 +58,7 @@ const MapMaker = ({ map ,onMarkerClick }) => {
     const data = await fetchData(); // API 데이터 가져오기
 
     if (data.length > 0) {
+      //for (let i = 0; i < data.length; i++) {
       const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES,SUBSCRPT_RCEPT_BGNDE,RCRIT_PBLANC_DE,
         SUBSCRPT_RCEPT_ENDDE,
         PRZWNER_PRESNATN_DE,
@@ -106,9 +107,11 @@ const MapMaker = ({ map ,onMarkerClick }) => {
 
         console.log("marker:", marker);
       }
+    //}
     } else {
       console.log("no data");
     }
+    
   }, [map, fetchData, geocodeAddress]);
 
   useEffect(() => {

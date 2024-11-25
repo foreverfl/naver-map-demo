@@ -49,7 +49,7 @@ export default function NaverMap({ onMapLoad }) {
         type="text/javascript"
         src={`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.NEXT_PUBLIC_NAVER_MAP_CLIENT_ID}`}
       />
-      <div id="map" style={{ width: "100%", height: "990px" }}></div>
+      <div id="map" style={{ width: "100%", height: "1000px" }}></div>
     </>
   );
 }

@@ -34,9 +34,10 @@ const Sidebar = ({isOpen, details, onClose}) => {
             <p><strong>계약 시작일:</strong> {details.cntrctCnclsBgnde}</p>
             <p><strong>계약 종료일:</strong> {details.cntrctCnclsEndde}</p>
             <p><strong>입주 예정월:</strong> {details.mvnPrearngeYm}</p>
+            <p><strong>문의처</strong>{details.mdhs_telno}</p>
             {/*
             <p>
-                <strong>예시</strong>{details.SUBSCRPT_RCEPT_ENDDE}
+                <strong>문의처</strong>{details.mdhs_telno}
             </p>
            */}
            {details.pblanc_url && (

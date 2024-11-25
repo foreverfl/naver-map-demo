@@ -1,5 +1,5 @@
 import "./globals.css";
-import Navbar from "@/components/Navigator";
+import Navbar from "@/components/Navigator1";
 export const metadata = {
   title: "네이버 지도 예제",
   description: "Next.js App Router에서 네이버 지도 구현",
