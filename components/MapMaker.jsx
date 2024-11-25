@@ -58,12 +58,13 @@ const MapMaker = ({ map ,onMarkerClick }) => {
     const data = await fetchData(); // API 데이터 가져오기
 
     if (data.length > 0) {
-      const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES,SUBSCRPT_RCEPT_BGNDE,
+      const { HOUSE_MANAGE_NO, HOUSE_NM, HSSPLY_ADRES,SUBSCRPT_RCEPT_BGNDE,RCRIT_PBLANC_DE,
         SUBSCRPT_RCEPT_ENDDE,
         PRZWNER_PRESNATN_DE,
         CNTRCT_CNCLS_BGNDE,
         CNTRCT_CNCLS_ENDDE,
         MVN_PREARNGE_YM,
+        MDHS_TELNO,
         PBLANC_URL, } = data[0];
 
       // 주소를 위도/경도로 변환
@@ -91,13 +92,15 @@ const MapMaker = ({ map ,onMarkerClick }) => {
             houseManageNo: HOUSE_MANAGE_NO,
             houseName: HOUSE_NM,
             address: HSSPLY_ADRES,
+            rcritpblancde :RCRIT_PBLANC_DE,
             subscrptRceptBgnde: SUBSCRPT_RCEPT_BGNDE,
             subscrptRceptEndde: SUBSCRPT_RCEPT_ENDDE,
             przwnerPresnatnDe: PRZWNER_PRESNATN_DE,
             cntrctCnclsBgnde: CNTRCT_CNCLS_BGNDE,
             cntrctCnclsEndde: CNTRCT_CNCLS_ENDDE,
             mvnPrearngeYm: MVN_PREARNGE_YM,
-            pblanc_url: PBLANC_URL
+            mdhstelno : MDHS_TELNO,
+            pblancurl: PBLANC_URL
           });
         });
 

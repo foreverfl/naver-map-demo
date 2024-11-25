@@ -3,7 +3,8 @@
 import React, { useState, useCallback } from "react";
 import NaverMap from "@/components/NaverMap";
 import MapMarker from "@/components/MapMaker";
-import Sidebar from "@/components/Siderbar";
+//import Sidebar from "@/components/Siderbar";
+import Sidebar1 from "@/components/Siderbar1";
 
 
 export default function Main() {
@@ -11,15 +12,14 @@ export default function Main() {
   const [selectedMarker, setSelectedMarker] = useState(null); // 선택된 마커 데이터
   const [isSidebarOpen, setSidebarOpen] = useState(false); // 사이드바 열림 상태
   
-  
-  
-  
   const handleMapLoad = useCallback((mapInstance) => {
     setMap(mapInstance);
   }, []);
 
  // 마커 클릭 핸들러
  const handleMarkerClick = (data) => {
+  console.log("클릭된 마커 데이터:", data);
+
   setSelectedMarker(data); // 클릭된 마커 데이터 저장
   setSidebarOpen(true); // 사이드바 열기
 };
@@ -38,7 +38,7 @@ const closeSidebar = () => {
       {map && <MapMarker map={map}onMarkerClick={handleMarkerClick} />}
       {/* 사이드바 렌더링 */}
       {isSidebarOpen && (
-        <Sidebar
+        <Sidebar1
           isOpen={isSidebarOpen}
           details={selectedMarker}
           onClose={closeSidebar}

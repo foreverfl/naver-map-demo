@@ -1,0 +1,13 @@
+// components/Button.jsx
+import React from "react";
+import { styles } from "@/components/Sidebar1/styles"
+
+const Button = ({ label, onClick }) => {
+  return (
+    <button className={styles.button} onClick={onClick}>
+      {label}
+    </button>
+  );
+};
+
+export default Button;
